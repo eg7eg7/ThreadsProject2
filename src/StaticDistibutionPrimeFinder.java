@@ -1,3 +1,10 @@
+/*
+ * 
+ * 
+ * EDEN DUPONT ID 204808596
+ * 
+ */
+
 public class StaticDistibutionPrimeFinder extends PrimeFinder {
 
 	// A and B are a subrange of the total range to check for in the thread

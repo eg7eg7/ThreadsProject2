@@ -1,9 +1,7 @@
 /DDPFThread.class
-/DynamicDistributionPrimeFinder.class
-/MultiThreadProject2.class
-/StaticDistibutionPrimeFinder.class
-/SDPF.class
-/SDPFThread.class
-/PrimeFinder.class
-/StaticDistributionMain.class
 /DynamicDistributionMain.class
+/DynamicDistributionPrimeFinder.class
+/PrimeFinder.class
+/SDPFThread.class
+/StaticDistibutionPrimeFinder.class
+/StaticDistributionMain.class

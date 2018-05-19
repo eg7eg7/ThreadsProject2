@@ -1,4 +1,9 @@
-
+/*
+ * 
+ * 
+ * EDEN DUPONT ID 204808596
+ * 
+ */
 public class DynamicDistributionPrimeFinder extends PrimeFinder {
 
 	private int num; // the number to be checked
@@ -45,11 +50,11 @@ public class DynamicDistributionPrimeFinder extends PrimeFinder {
 		num = n;
 	}
 
-	public int getInstanceId() {
+	public int getJobId() {
 		return id;
 	}
 
-	public void setInstanceId(int instanceId) {
-		this.id = instanceId;
+	public void setJobId(int id) {
+		this.id = id;
 	}
 }

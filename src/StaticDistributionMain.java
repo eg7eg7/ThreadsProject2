@@ -1,4 +1,9 @@
-
+/*
+ * 
+ * 
+ * EDEN DUPONT ID 204808596
+ * 
+ */
 public class StaticDistributionMain {
 
 	public static void main(String[] args) {

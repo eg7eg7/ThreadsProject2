@@ -1,4 +1,9 @@
-
+/*
+ * 
+ * 
+ * EDEN DUPONT ID 204808596
+ * 
+ */
 //Thread manages Static Distribution to search for prime
 public class SDPFThread extends Thread {
 	private int prime = 0;
