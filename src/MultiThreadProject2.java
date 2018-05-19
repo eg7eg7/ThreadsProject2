@@ -41,7 +41,7 @@ public class MultiThreadProject2 {
 	}
 
 	private static int firstPrimeDynamicDistribution(int a, int b, int n) throws InterruptedException {
-		System.out.println("\nChecking primes within the range [" + a + ", " + b + "] with " + n + " threads.\n");
+		System.out.println("\n\nChecking primes within the range [" + a + ", " + b + "] with " + n + " threads.\n");
 		DynamicDistributionPrimeFinder[] DDPF = new DynamicDistributionPrimeFinder[n];
 		Thread[] threads = new Thread[n];
 		for(int i=0;i<n;i++)
@@ -54,7 +54,7 @@ public class MultiThreadProject2 {
 		{
 			for(int i=0;i<n;i++)
 			{
-				if((!threads[i].isAlive()) && DynamicDistributionPrimeFinder.getPrime() == 0)
+				if((!threads[i].isAlive()) && DynamicDistributionPrimeFinder.getPrime() == 0 && a<=b)
 				{
 					DDPF[i].checkIfPrime(a);
 					a++;
