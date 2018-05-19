@@ -1,5 +1,5 @@
 
-public class DynamicDistributionPrimeFinder extends PrimeFinder implements Runnable {
+public class DynamicDistributionPrimeFinder extends PrimeFinder {
 
 	private int num; // the number to be checked
 	private volatile static int[] primes = new int[10000];

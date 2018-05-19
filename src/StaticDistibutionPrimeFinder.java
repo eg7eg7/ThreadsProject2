@@ -1,4 +1,4 @@
-public class StaticDistibutionPrimeFinder extends PrimeFinder implements Runnable {
+public class StaticDistibutionPrimeFinder extends PrimeFinder {
 
 	// A and B are a subrange of the total range to check for in the thread
 	private int A = 0, B = 0;

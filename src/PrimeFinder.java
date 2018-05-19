@@ -1,5 +1,5 @@
 
-public abstract class PrimeFinder {
+public abstract class PrimeFinder implements Runnable{
 	protected int id;
 
 	public PrimeFinder(int id) {
