@@ -45,12 +45,15 @@ public class MultiThreadProject2 {
 		}
 	}
 
-	private static int firstPrimeDynamicDistribution(int a, int b, int n) throws InterruptedException {
-		System.out.println("\n\nChecking primes within the range [" + a + ", " + b + "] with " + n + " threads.\n");
-		DDPFThread thread = new DDPFThread(a, b, n);
+	private static Object firstPrimeDynamicDistribution(int A, int B, int N) throws InterruptedException {
+		System.out.println("\n\nChecking primes within the range [" + A + ", " + B + "] with " + N + " threads.\n");
+		DDPFThread thread = new DDPFThread(A, B, N);
 		thread.start();
 		thread.join();
-		return thread.getPrime();
+		int prime = thread.getPrime();
+		if(prime == 0)
+			return "No Prime in range"; 
+		return prime;
 	}
 
 	// returns the first integer found in the range by all threads, or a message of
@@ -58,30 +61,12 @@ public class MultiThreadProject2 {
 	// String if no prime is found
 	public static Object firstPrimeStaticDistribution(int A, int B, int N) throws InterruptedException {
 		System.out.println("Checking primes within the range [" + A + ", " + B + "] with " + N + " threads.\n");
-		Thread[] threads = new Thread[N];
-		StaticDistibutionPrimeFinder[] SDPF = new StaticDistibutionPrimeFinder[N];
-		int range = ((B - A + 1) / N);
-		int subrangeA;
-
-		for (int i = 0; i < N; i++) {
-			// makes sure the last thread will calculate the rest of the
-			// integers if they don't divide to N threads
-			// creates a job for thread i with subrange of A-B
-			subrangeA = A + i * range;
-			if (i == (N - 1))
-				range = B - subrangeA + 1;
-			SDPF[i] = new StaticDistibutionPrimeFinder(subrangeA, range);
-			threads[i] = new Thread(SDPF[i]);
-			threads[i].start();
-
-		}
-		for (int i = 0; i < threads.length; i++) {
-			threads[i].join();
-			// makes sure all threads finish before moving on
-		}
-		int prime = StaticDistibutionPrimeFinder.getAndResetPrime();
-		if (prime == 0)
-			return "No Prime in range";
+		SDPFThread thread = new SDPFThread(A, B, N);
+		thread.start();
+		thread.join();
+		int prime = thread.getPrime();
+		if(prime == 0)
+			return "No Prime in range"; 
 		return prime;
 	}
 }
