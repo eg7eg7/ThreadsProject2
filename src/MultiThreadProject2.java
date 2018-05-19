@@ -1,4 +1,5 @@
 
+
 /*
  * 
  * 
@@ -26,8 +27,12 @@ public class MultiThreadProject2 {
 				A = Integer.parseInt(args[0]);
 				B = Integer.parseInt(args[1]);
 				N = Integer.parseInt(args[2]);
-				System.out.println("The first prime found was (static range distribution to threads) : " + firstPrimeStaticDistribution(A, B, N));
-				System.out.println("The first prime found was (dynamic range distribution to threads) : " + firstPrimeDynamicDistribution(A, B, N));
+				
+				System.out.println("The first prime found was (static range distribution to threads) : "
+						+ firstPrimeStaticDistribution(A, B, N));
+
+				System.out.println("The first prime found was (dynamic range distribution to threads) : "
+						+ firstPrimeDynamicDistribution(A, B, N));
 			} else {
 				System.out.println("Not enough arguments passed.");
 			}
@@ -42,42 +47,14 @@ public class MultiThreadProject2 {
 
 	private static int firstPrimeDynamicDistribution(int a, int b, int n) throws InterruptedException {
 		System.out.println("\n\nChecking primes within the range [" + a + ", " + b + "] with " + n + " threads.\n");
-		DynamicDistributionPrimeFinder[] DDPF = new DynamicDistributionPrimeFinder[n];
-		Thread[] threads = new Thread[n];
-		for(int i=0;i<n;i++)
-		{
-			DDPF[i] = new DynamicDistributionPrimeFinder();
-			threads[i]=new Thread(DDPF[i]);
-		}
-		
-		while(DynamicDistributionPrimeFinder.getPrime() == 0 && a<=b)
-		{
-			for(int i=0;i<n;i++)
-			{
-				if((!threads[i].isAlive()) && DynamicDistributionPrimeFinder.getPrime() == 0 && a<=b)
-				{
-					DDPF[i].checkIfPrime(a);
-					a++;
-					threads[i]=new Thread(DDPF[i]);	
-					threads[i].start();
-				}
-			}
-		}
-		//threads are guaranteed to die naturally when a prime is found
-		waitForAllThreadsToFinish(threads);
-		return DynamicDistributionPrimeFinder.getAndResetPrime();
+		DDPFThread thread = new DDPFThread(a, b, n);
+		thread.start();
+		thread.join();
+		return thread.getPrime();
 	}
 
-	private static void waitForAllThreadsToFinish(Thread[] threads) throws InterruptedException {
-		for(int i=0;i<threads.length;i++)
-		{
-			if(threads[i].isAlive())
-				threads[i].join();
-		}
-		
-	}
-
-	// returns the first integer found in the range by all threads, or a message of type
+	// returns the first integer found in the range by all threads, or a message of
+	// type
 	// String if no prime is found
 	public static Object firstPrimeStaticDistribution(int A, int B, int N) throws InterruptedException {
 		System.out.println("Checking primes within the range [" + A + ", " + B + "] with " + N + " threads.\n");
@@ -86,8 +63,7 @@ public class MultiThreadProject2 {
 		int range = ((B - A + 1) / N);
 		int subrangeA;
 
-		for (int i = 0; i < N; i++) 
-		{
+		for (int i = 0; i < N; i++) {
 			// makes sure the last thread will calculate the rest of the
 			// integers if they don't divide to N threads
 			// creates a job for thread i with subrange of A-B
@@ -99,8 +75,7 @@ public class MultiThreadProject2 {
 			threads[i].start();
 
 		}
-		for (int i = 0; i < threads.length; i++)
-		{
+		for (int i = 0; i < threads.length; i++) {
 			threads[i].join();
 			// makes sure all threads finish before moving on
 		}

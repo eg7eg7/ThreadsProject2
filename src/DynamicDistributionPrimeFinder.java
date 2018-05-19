@@ -1,11 +1,16 @@
 
+
 public class DynamicDistributionPrimeFinder implements Runnable {
 
-	private static volatile int prime = 0;
-	private int num;
+	private static volatile int[] primes = new int[10000];	//each index is the id of a group of thread within a range - limited to 10,000 ranges at a time
+	private int num;	//the number to be checked
+	private int instanceId;	//id of main thread executing this thread
+	
 
-	public DynamicDistributionPrimeFinder() {
+
+	public DynamicDistributionPrimeFinder(int id) {
 		num = 0;
+		instanceId=id;
 	}
 
 	public void run() {
@@ -13,19 +18,13 @@ public class DynamicDistributionPrimeFinder implements Runnable {
 			setPrime(num);
 	}
 
-	public synchronized static int getPrime() {
-		return prime;
+	public synchronized int getPrime() {
+		return primes[instanceId];
 	}
 
-	public synchronized static int getAndResetPrime() {
-		int n = getPrime();
-		prime = 0;
-		return n;
-	}
-
-	public static synchronized void setPrime(int n) {
+	private synchronized void setPrime(int n) {
 		if (getPrime() == 0)
-			prime = n;
+			primes[instanceId] = n;
 		
 	}
 
@@ -42,8 +41,18 @@ public class DynamicDistributionPrimeFinder implements Runnable {
 		}
 		return true;
 	}
-	public void checkIfPrime(int n)
+	
+	public void setNextNumToCheck(int n)
 	{
 		num=n;
+	}
+	
+	
+	public int getInstanceId() {
+		return instanceId;
+	}
+
+	public void setInstanceId(int instanceId) {
+		this.instanceId = instanceId;
 	}
 }
