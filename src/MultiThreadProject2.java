@@ -1,5 +1,4 @@
 
-
 /*
  * 
  * 
@@ -27,7 +26,7 @@ public class MultiThreadProject2 {
 				A = Integer.parseInt(args[0]);
 				B = Integer.parseInt(args[1]);
 				N = Integer.parseInt(args[2]);
-				
+
 				System.out.println("The first prime found was (static range distribution to threads) : "
 						+ firstPrimeStaticDistribution(A, B, N));
 
@@ -51,8 +50,8 @@ public class MultiThreadProject2 {
 		thread.start();
 		thread.join();
 		int prime = thread.getPrime();
-		if(prime == 0)
-			return "No Prime in range"; 
+		if (prime == 0)
+			return "No Prime in range";
 		return prime;
 	}
 
@@ -65,8 +64,8 @@ public class MultiThreadProject2 {
 		thread.start();
 		thread.join();
 		int prime = thread.getPrime();
-		if(prime == 0)
-			return "No Prime in range"; 
+		if (prime == 0)
+			return "No Prime in range";
 		return prime;
 	}
 }

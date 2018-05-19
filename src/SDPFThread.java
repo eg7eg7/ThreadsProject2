@@ -1,26 +1,26 @@
 
-public class SDPFThread extends Thread{
+public class SDPFThread extends Thread {
 	private int prime = 0;
 	private int A; // find primes from a
 	private int B; // find primes until b
 	private int N; // use n threads
-	private static int nextId=0;
+	private static int nextId = 0;
 	private int id;
-	private StaticDistibutionPrimeFinder[] SDPF=null;
-	private Thread[] threads=null;
-	
+	private StaticDistibutionPrimeFinder[] SDPF = null;
+	private Thread[] threads = null;
+
 	public SDPFThread(int a, int b, int n) {
 		this.A = a;
 		this.B = b;
 		this.N = n;
-		id=nextId++;
+		id = nextId++;
 		SDPF = new StaticDistibutionPrimeFinder[n];
 		threads = new Thread[n];
 	}
 
 	@Override
 	public void run() {
-		
+
 		int range = ((B - A + 1) / N);
 		int subrangeA;
 
@@ -42,15 +42,15 @@ public class SDPFThread extends Thread{
 
 	private void waitForAllThreads() {
 		// threads are guaranteed to die naturally when a prime is found
-				try {
-					for (int i = 0; i < threads.length; i++) {
-						threads[i].join();
-					}
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-					DDPFThread.currentThread().interrupt();
-				}
-		
+		try {
+			for (int i = 0; i < threads.length; i++) {
+				threads[i].join();
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			DDPFThread.currentThread().interrupt();
+		}
+
 	}
 
 	public int getPrime() {
