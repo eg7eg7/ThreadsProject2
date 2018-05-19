@@ -1,7 +1,7 @@
 
 public abstract class PrimeFinder implements Runnable{
 	protected int id;
-
+	public final static int MAX_THREADS = 10000;
 	public PrimeFinder(int id) {
 		this.id = id;
 	}

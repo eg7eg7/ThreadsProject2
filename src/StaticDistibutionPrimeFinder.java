@@ -2,7 +2,7 @@ public class StaticDistibutionPrimeFinder extends PrimeFinder {
 
 	// A and B are a subrange of the total range to check for in the thread
 	private int A = 0, B = 0;
-	private volatile static int[] primes = new int[10000];
+	private volatile static int[] primes = new int[MAX_THREADS];
 	// each index is the id of a group of thread within a range -
 	// limited to 10,000 ranges at a time
 

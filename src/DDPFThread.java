@@ -1,4 +1,4 @@
-
+//Thread manages Dynamic Distribution to search for prime
 public class DDPFThread extends Thread {
 
 	private int prime = 0;

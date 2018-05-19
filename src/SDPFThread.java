@@ -1,4 +1,5 @@
 
+//Thread manages Static Distribution to search for prime
 public class SDPFThread extends Thread {
 	private int prime = 0;
 	private int A; // find primes from a

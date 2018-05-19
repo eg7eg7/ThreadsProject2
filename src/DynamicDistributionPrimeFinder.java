@@ -2,7 +2,7 @@
 public class DynamicDistributionPrimeFinder extends PrimeFinder {
 
 	private int num; // the number to be checked
-	private volatile static int[] primes = new int[10000];
+	private volatile static int[] primes = new int[MAX_THREADS];
 	// each index is the id of a group of thread within a range -
 	// limited to 10,000 ranges at a time
 

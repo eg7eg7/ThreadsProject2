@@ -1,19 +1,5 @@
 
-/*
- * 
- * 
- * 
- * 
- * 
- *  EDEN DUPONT ID 204808596
- * 
- * 
- * 
- * 
- * 
-*/
-
-public class MultiThreadProject2 {
+public class StaticDistributionMain {
 
 	public static void main(String[] args) {
 		int A = 0, B = 0, N = 1;
@@ -30,8 +16,6 @@ public class MultiThreadProject2 {
 				System.out.println("The first prime found was (static range distribution to threads) : "
 						+ firstPrimeStaticDistribution(A, B, N));
 
-				System.out.println("The first prime found was (dynamic range distribution to threads) : "
-						+ firstPrimeDynamicDistribution(A, B, N));
 			} else {
 				System.out.println("Not enough arguments passed.");
 			}
@@ -42,17 +26,7 @@ public class MultiThreadProject2 {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-	}
 
-	private static Object firstPrimeDynamicDistribution(int A, int B, int N) throws InterruptedException {
-		System.out.println("\n\nChecking primes within the range [" + A + ", " + B + "] with " + N + " threads.\n");
-		DDPFThread thread = new DDPFThread(A, B, N);
-		thread.start();
-		thread.join();
-		int prime = thread.getPrime();
-		if (prime == 0)
-			return "No Prime in range";
-		return prime;
 	}
 
 	// returns the first integer found in the range by all threads, or a message of
