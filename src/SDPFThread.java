@@ -40,10 +40,14 @@ public class SDPFThread extends Thread {
 			SDPF[i] = new StaticDistibutionPrimeFinder(subrangeA, range, id);
 			threads[i] = new Thread(SDPF[i]);
 			threads[i].start();
-
+			Thread.yield();
 		}
 		waitForAllThreads();
 		prime = SDPF[0].getPrime();
+		if(prime == 0)
+			System.out.println("No prime found within range " + A +"-" + B);
+		else
+			System.out.println("The first prime found is " + prime);
 	}
 
 	private void waitForAllThreads() {

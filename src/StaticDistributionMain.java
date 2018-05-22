@@ -17,9 +17,7 @@ public class StaticDistributionMain {
 				A = Integer.parseInt(args[0]);
 				B = Integer.parseInt(args[1]);
 				N = Integer.parseInt(args[2]);
-
-				System.out.println("The first prime found was (static range distribution to threads) : "
-						+ firstPrimeStaticDistribution(A, B, N));
+				firstPrimeStaticDistribution(A, B, N);
 
 			} else {
 				System.out.println("Not enough arguments passed.");
@@ -37,14 +35,10 @@ public class StaticDistributionMain {
 	// returns the first integer found in the range by all threads, or a message of
 	// type
 	// String if no prime is found
-	public static Object firstPrimeStaticDistribution(int A, int B, int N) throws InterruptedException {
-		System.out.println("Checking primes within the range [" + A + ", " + B + "] with " + N + " threads.\n");
+	public static void firstPrimeStaticDistribution(int A, int B, int N) throws InterruptedException {
+		System.out.println("Static Distribution implementation\nChecking primes within the range [" + A + ", " + B + "] with " + N + " threads.\n");
 		SDPFThread thread = new SDPFThread(A, B, N);
 		thread.start();
 		thread.join();
-		int prime = thread.getPrime();
-		if (prime == 0)
-			return "No Prime in range";
-		return prime;
 	}
 }
